@@ -56,9 +56,11 @@ This project is licensed under the GNU License - see the [LICENSE](LICENSE) file
 
 This project was created as a simple example of a Java-based HTTP server with PHP support. It can be used as a starting point for more complex web server applications or educational purposes.
 
+
+
 <p align="center">
    <a href="https://github.com/Buddhikanip/Simple-Http-Server-Using-Java/blob/main/LICENSE">
-      <img alt="License: GNU" src="https://black.readthedocs.io/en/stable/_static/license.svg">
+      <img alt="License: GNU" src="https://img.shields.io/badge/License-GPLv3-blue.svg">
    </a>
     <a href="https://github.com/Buddhikanip/Simple-Http-Server-Using-Java">
       <img alt="Hits" src="https://hits.sh/github.com/Buddhikanip/Simple-Http-Server-Using-Java.svg?label=Views"/>
