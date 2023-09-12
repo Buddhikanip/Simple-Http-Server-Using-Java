@@ -57,8 +57,9 @@ public class HttpServer {
                             if(correctFilepath.length>1) {
                                 String params = correctFilepath[1];
                                 phpHandler(filePath, params, outputStream);
-                            } //for get method php forms
-                            phpHandler(filePath, outputStream);
+                            }else {  //for get method php forms
+                                phpHandler(filePath, outputStream);
+                            }
                         } else {
                             htmlHandler(filePath, outputStream); //render html files
                         }
@@ -77,8 +78,7 @@ public class HttpServer {
         }
     }
 
-    public static void postRequestHandler(BufferedReader bufferedReader, String filePath, OutputStream outputStream)
-            throws IOException {
+    public static void postRequestHandler(BufferedReader bufferedReader, String filePath, OutputStream outputStream) throws IOException {
         int contentLength = 0;
         String line;
 
@@ -183,30 +183,6 @@ public class HttpServer {
         }
     }
 
-    private static String createTempFile (String filePath) throws IOException {
-        Writer fileWriter = null;
-        try {
-            Path fileName = Path.of(filePath);
-            String str = Files.readString(fileName);
-
-            String tempFileName = "./" + Instant.now().toEpochMilli() + ".php";
-            fileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tempFileName), "utf-8"));
-
-            // Append php argument reading line
-            str = "<?php parse_str(implode('&', array_slice($argv, 1)), $_GET); ?> \n\n" + str;
-            fileWriter.write(str);
-
-            return tempFileName;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            fileWriter.close();
-        }
-
-        return filePath;
-    }
-
     private static void phpHandler(String filePath, OutputStream outputStream) throws IOException {
         try {
             // Create a ProcessBuilder to run the PHP interpreter with the script file
@@ -240,6 +216,30 @@ public class HttpServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String createTempFile (String filePath) throws IOException {
+        Writer fileWriter = null;
+        try {
+            Path fileName = Path.of(filePath);
+            String str = Files.readString(fileName);
+
+            String tempFileName = "./" + Instant.now().toEpochMilli() + ".php";
+            fileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(tempFileName), "utf-8"));
+
+            // Append php argument reading line
+            str = "<?php parse_str(implode('&', array_slice($argv, 1)), $_GET); ?> \n\n" + str;
+            fileWriter.write(str);
+
+            return tempFileName;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            fileWriter.close();
+        }
+
+        return filePath;
     }
 
     private static void sendResponse(OutputStream outputStream, String statusLine, String message) throws IOException {
