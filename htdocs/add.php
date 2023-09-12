@@ -18,7 +18,6 @@
             <div class="row">
                 <div class="col-xl-4 col-md-6 col-lg-4 col-sm-8 col-8 m-5">
                     <?php
-                    parse_str(implode('&', array_slice($argv, 1)), $_GET);
                     // print_r($_GET);                    
                     if (isset($_POST['n1']) && isset($_POST['n2'])) {
                         $n1 = $_POST['n1'];
