@@ -41,7 +41,7 @@ java HttpServer
 ## Features
 
 - Handles GET and POST requests.
-- Serves static HTML files from the`[htdocs](https://github.com/Buddhikanip/Simple-Http-Server-Using-Java/tree/main/htdocs) directory.
+- Serves static HTML files from the [htdocs](https://github.com/Buddhikanip/Simple-Http-Server-Using-Java/tree/main/htdocs) directory.
 - Executes PHP scripts and passes parameters.
 
 ## Configuration
